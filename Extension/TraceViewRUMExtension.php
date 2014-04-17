@@ -17,21 +17,11 @@ class TraceViewRUMExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'oboe_rum_header' => new \Twig_Function_Function(__CLASS__.'::getHeader',
+            'oboe_get_rum_header' => new \Twig_Function_Function("oboe_get_rum_header",
                 array('is_safe' => array('html'))),
-            'oboe_rum_footer' => new \Twig_Function_Function(__CLASS__.'::getFooter',
+            'oboe_get_rum_footer' => new \Twig_Function_Function("oboe_get_rum_footer",
                 array('is_safe' => array('html'))),
         );
-    }
-
-    public static function getHeader($useScriptTags = true)
-    {
-        return oboe_get_rum_header($useScriptTags);
-    }
-
-    public static function getFooter($useScriptTags = true)
-    {
-        return oboe_get_rum_footer($useScriptTags);
     }
 
     public function getName()
