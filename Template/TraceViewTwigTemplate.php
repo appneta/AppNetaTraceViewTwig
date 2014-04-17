@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of AppNeta\TraceViewBundle\Template\TraceViewTwigTemplate.
+ * Definition of AppNeta\TraceViewTwig\Template\TraceViewTwigTemplate.
  */
 
-namespace AppNeta\TraceViewBundle\Template;
+namespace AppNeta\TraceViewTwig\Template;
 
 /**
  * This is the base class for compiled Twig templates.
