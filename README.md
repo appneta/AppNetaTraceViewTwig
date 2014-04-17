@@ -1,8 +1,9 @@
 AppNetaTraceViewTwig
 ====================
+![A Symfony request profiled in TraceView.](http://appneta.github.io/AppNetaTraceViewBundle/images/AppNetaTraceViewBundle.png)
 
-The `AppNeta\TraceViewBundle` bundle provides integration points between Twig and
-AppNeta TraceView. It currently supports:
+The `AppNeta\TraceViewTwig` package provides integration points between Twig and
+[AppNeta TraceView](http://www.appneta.com/products/traceview/). It currently supports:
 
 - Tracking Twig template rendering as profiles
 - Injecting real user monitoring JavaScript (via Twig extension)
