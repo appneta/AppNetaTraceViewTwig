@@ -83,6 +83,11 @@ in a block, like `javascript` or `body`, but there are two downsides: you may
 inadvertantly output the script tags more than once per HTML document, and the
 timing information will be less accurate if the JavaScript gets loaded after other JavaScript or CSS stylesheets.
 
+# Contributors
+
+Thanks to Willem van der Jagt of Cakemail for writing the initial integration
+between TraceView RUM and Twig!
+
 # Contributing
 
 The best way to improve this package is to work with the people using it! We
