@@ -1,0 +1,35 @@
+{
+    "name": "appneta/traceview-twig",
+    "type": "symfony-bundle",
+    "description": "Additional Twig integration for AppNeta TraceView.",
+    "keywords": ["twig", "traceview", "appneta", "performance", "monitoring", "apm"],
+    "homepage": "https://github.com/appneta/AppNetaTraceViewTwig",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":     "James Meickle",
+            "email":    "jmeickle@appneta.com",
+            "homepage": "https://github.com/Eronarn",
+            "role":     "Maintainer"
+        },
+        {
+            "name":     "AppNeta",
+            "email":    "traceviewsupport@appneta.com",
+            "homepage": "https://github.com/appneta",
+            "role":     "Sponsor"
+        }
+    ],
+    "require": {
+        "php": ">=5.2",
+        "twig/twig": "~1.0",
+        "twig/extensions": "~1.0"
+    },
+    "suggest": {
+        "ext-oboe": "`AppNeta/TraceViewTwig` will not report data unless the `php-oboe` extension is enabled at v1.4.4 or higher."
+    },
+    "autoload": {
+        "psr-0": { "AppNeta\\TraceViewTwig": "" },
+        "files": ["Resources/stubs/api.php"]
+    },
+    "target-dir": "AppNeta/TraceViewTwig"
+}
