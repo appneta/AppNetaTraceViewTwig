@@ -7,9 +7,10 @@ AppNeta TraceView. It currently supports:
 - Tracking Twig template rendering as profiles
 - Injecting real user monitoring JavaScript (via Twig extension)
 
+## Template Tracking
 Twig template tracking is provided by replacing the Twig base template class with
 a TraceView-augmented one. The easiest way to load the relevant base template
-class is to add this package as a dependency in your `composer.json`:
+class is to add this package as a `require` in your `composer.json`:
 ```
     "require": {
         "php": ">=5.3.3",
@@ -18,7 +19,14 @@ class is to add this package as a dependency in your `composer.json`:
     },
 ```
 
-When manually constructing a Twig environment, you can provide that class as the
+If you're using Twig with Symfony2, you can add this line to the `twig` section
+of your `config.yml`:
+```
+twig:
+    base_template_class: AppNeta\TraceViewTwig\Template\TraceViewTwigTemplate
+```
+
+If you're manually constructing a Twig environment, you should instead use the
 `base_template_class` option:
 ```
 $options = array(
@@ -28,34 +36,45 @@ $options = array(
 $twigEnv = new Twig_Environment($loader, $options);
 ```
 
-If you're using Twig with Symfony2, you can instead add this line to the `twig`
-section of your `config.yml`:
-```
-twig:
-    base_template_class: AppNeta\TraceViewTwig\Template\TraceViewTwigTemplate
-```
-
+## Real User Monitoring
 TraceView real user monitoring JavaScript is usually added by calling the
 `oboe_get_rum_header` and `oboe_get_rum_footer` functions. Because Twig templates
 do not allow arbitrary PHP execution, this package provides a Twig extension that
 exposes them as Twig functions.
 
-For full details on placing these snippets, [please see this knowledge base article](https://support.tv.appneta.com/support/solutions/articles/86401-php-rum). Here is a basic example:
+If you're using Twig with Symfony2, you can load the extension from your `config.yml`:
+```
+    appneta.twig.traceview_twig_rum_extension:
+        class: AppNeta\TraceViewTwig\Extension\TraceViewRUMExtension
+        tags:
+            - { name: twig.extension }
+```
+
+If you're manually constructing a Twig environment, you should instead call the
+`addExtension` method directly:
+```
+$twigEnv = new Twig_Environment($loader, $options);
+
+$twigEnv->addExtension(new AppNeta\TraceViewTwig\Extension\TraceViewRUMExtension);
+```
+
+For full details on placing these snippets, [please see this knowledge base article](https://support.tv.appneta.com/support/solutions/articles/86401-php-rum). Here
+is a basic example:
 ```
 <html>
   <head>
     <meta ... >
-    {{ oboe_rum_header() }}
+    {{ oboe_get_rum_header() }}
   </head>
 
   <body>
     ...
-    {{ oboe_rum_footer() }}
+    {{ oboe_get_rum_footer() }}
   </body>
 </html>
 ```
-*Note: the functions only accept one argument: whether to output `<script>` tags
-around the snippet (defaults to `true`).*
+*Note: these functions only accept one argument: whether to output `<script>`
+tags around the snippet (defaults to `true`).*
 
 The best place to put these functions is in your root Twig layout template (such
 as `TwigBundle::layout.html.twig`). It is possible to use these Twig functions
