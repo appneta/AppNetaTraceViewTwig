@@ -65,5 +65,6 @@ abstract class TraceViewTwigTemplate extends \Twig_Template {
         // If there was an exception, raise it.
         if ($display_exception) {
             throw $display_exception;
-        }    }
+        }
+    }
 }
