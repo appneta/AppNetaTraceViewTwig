@@ -25,8 +25,8 @@ abstract class TraceViewTwigTemplate extends \Twig_Template {
         $template = $this->getTemplateName();
 
         // If we're not already in a 'twig' layer, start one.
-        $traceview_twig_layer = $this->env->getGlobals()['_traceview_twig_layer'];
-        if (!$traceview_twig_layer) {
+        $twig_globals = $this->env->getGlobals();
+        if (!$twig_globals['_traceview_twig_layer']) {
             // Modify globals to indicate that we're now inside a 'twig' layer.
             $this->env->addGlobal('_traceview_twig_layer', TRUE);
 
