@@ -26,7 +26,7 @@ abstract class TraceViewTwigTemplate extends \Twig_Template {
 
         // If we're not already in a 'twig' layer, start one.
         $twig_globals = $this->env->getGlobals();
-        if (!$twig_globals['_traceview_twig_layer']) {
+        if (empty($twig_globals['_traceview_twig_layer'])) {
             // Modify globals to indicate that we're now inside a 'twig' layer.
             $this->env->addGlobal('_traceview_twig_layer', TRUE);
 
@@ -54,7 +54,7 @@ abstract class TraceViewTwigTemplate extends \Twig_Template {
         oboe_log(NULL, "profile_exit", array('ProfileName' => $template), FALSE);
 
         // If this is the first call to display(), exit the 'twig' layer.
-        if (!$traceview_twig_layer) {
+        if (empty($twig_globals['_traceview_twig_layer'])) {
             // Exit the layer for the entire Twig render (no backtrace).
             oboe_log("twig", "exit", array(), FALSE);
 
